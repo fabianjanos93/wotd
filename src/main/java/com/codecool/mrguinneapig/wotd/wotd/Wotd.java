@@ -14,6 +14,7 @@ import java.util.Random;
 
 public class Wotd {
 
+    public static final String STATIC_WORDS_TXT = "static/words.txt";
     String wotd;
 
     public Wotd() throws IOException {
@@ -39,7 +40,7 @@ public class Wotd {
 
     public String WordOfTheDay() throws IOException {
         List<String> lines;
-        File file = new ClassPathResource("/static/words.txt").getFile();
+        File file = new ClassPathResource(STATIC_WORDS_TXT).getFile();
         lines = FileUtils.readLines(file, Charset.forName("UTF-8"));
 
         return lines.get(getSeededRandom(lines.size()));
