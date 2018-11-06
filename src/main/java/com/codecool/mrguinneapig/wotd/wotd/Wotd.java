@@ -1,7 +1,8 @@
 package com.codecool.mrguinneapig.wotd.wotd;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ClassPathResource;
+
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
