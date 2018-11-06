@@ -8,13 +8,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 public class Wotd {
 
-    public static final String STATIC_WORDS_TXT = "static/words.txt";
+    public static final String STATIC_WORDS_TXT = "words.txt";
     String wotd;
 
     public Wotd() throws IOException {
@@ -44,5 +45,11 @@ public class Wotd {
         lines = FileUtils.readLines(file, Charset.forName("UTF-8"));
 
         return lines.get(getSeededRandom(lines.size()));
+    }
+
+    List<String> lines;
+
+    private void fillLines() {
+        lines.addAll(Arrays.asList());
     }
 }
