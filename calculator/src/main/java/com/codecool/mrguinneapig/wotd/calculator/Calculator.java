@@ -1,20 +1,42 @@
 package com.codecool.mrguinneapig.wotd.calculator;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 
+@Component
 public class Calculator {
 
     private String equation;
+    private boolean solvable;
+    private int answer = 0;
+
     private String[] numbers = new String[]{"0","1","2","3","4","5","6","7","8","9"};
     private String[] operators = new String[]{"*","/","+","-"};
 
+    public Calculator() {
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public boolean isSolvable() {
+        return solvable;
+    }
 
     public void setEquation(String equation) {
         this.equation = equation;
     }
 
-
+    private void setSolvable(boolean solvable){
+        this.solvable = solvable;
+    }
 
     public boolean solvable() {
         String[] butcheredEquation = equation.split("");
@@ -28,8 +50,10 @@ public class Calculator {
                     ans = (contains(butcheredEquation[i-1],numbers) && contains(butcheredEquation[i+1],numbers));
                 }
             }
+            setSolvable(ans);
             return ans;
         }
+        setSolvable(false);
         return false;
     }
 
@@ -78,7 +102,8 @@ public class Calculator {
                 }
             }
         }
-        return Integer.parseInt(butcheredEquation.get(0));
+        answer = Integer.parseInt(butcheredEquation.get(0));
+        return answer;
     }
 
     public void fromDigitToNumber(LinkedList<String> butcheredEquation) {
