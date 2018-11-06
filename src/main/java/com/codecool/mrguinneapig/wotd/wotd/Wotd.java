@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class Wotd {
 
-    public static final String STATIC_WORDS_TXT = "words.txt";
+    public static final String STATIC_WORDS_TXT = "/words.txt";
     String wotd;
 
     public Wotd() throws IOException {
