@@ -4,18 +4,14 @@ import org.springframework.core.io.ClassPathResource;
 
 import org.apache.commons.io.FileUtils;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Wotd {
 
-    public static final String STATIC_WORDS_TXT = "/words.txt";
+    public static final String STATIC_WORDS_TXT = "static/words.txt";
     String wotd;
 
     public Wotd() throws IOException {
@@ -40,9 +36,15 @@ public class Wotd {
     }
 
     public String WordOfTheDay() throws IOException {
-        List<String> lines;
-        File file = new ClassPathResource(STATIC_WORDS_TXT).getFile();
-        lines = FileUtils.readLines(file, Charset.forName("UTF-8"));
+        List<String> lines = new LinkedList<>();
+        ClassLoader cl = this.getClass().getClassLoader();
+        InputStream inputStream = cl.getResourceAsStream(STATIC_WORDS_TXT);
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+        String line = br.readLine();
+        while (line != null) {
+            lines.add(line);
+            line = br.readLine();
+        }
 
         return lines.get(getSeededRandom(lines.size()));
     }
