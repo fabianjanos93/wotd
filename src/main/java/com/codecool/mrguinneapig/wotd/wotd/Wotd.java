@@ -34,7 +34,7 @@ public class Wotd {
 
     public String WordOfTheDay() throws IOException {
         List<String> lines = new LinkedList<>();
-        
+
         ClassLoader cl = this.getClass().getClassLoader();
         InputStream inputStream = cl.getResourceAsStream(STATIC_WORDS_TXT);
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
